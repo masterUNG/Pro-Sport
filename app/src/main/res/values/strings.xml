@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Pro Sport</string>
+
+    <string name="have_space_title">มีช่องว่าง นะ</string>
+    <string name="have_space_message">กรุณากรอกทุกช่อง นะคะ</string>
+
 </resources>
