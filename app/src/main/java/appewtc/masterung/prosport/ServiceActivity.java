@@ -19,6 +19,7 @@ public class ServiceActivity extends AppCompatActivity {
 
     //Explicit
     private static final int myINT = 1;
+    private static final int videoINT = 2;
     private String videoUrlString, nameVideoString;
 
     @Override
@@ -26,6 +27,18 @@ public class ServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
     }   // Main Method
+
+    public void clickAnalysis(View view) {
+        startActivity(new Intent(ServiceActivity.this, AnalysinActivity.class));
+    }
+
+
+    public void clickRecordVideo(View view) {
+
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        startActivityForResult(intent, videoINT);
+
+    }   // clickRecord
 
     @Override
     protected void onActivityResult(int requestCode,
