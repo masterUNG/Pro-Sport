@@ -4,10 +4,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import org.jibble.simpleftp.SimpleFTP;
+
+import java.io.File;
 
 public class ServiceActivity extends AppCompatActivity {
 
@@ -38,9 +44,41 @@ public class ServiceActivity extends AppCompatActivity {
 
             Log.d("12AugV1", "Name Video ==> " + nameVideoString);
 
+            uploadVideoToServer(videoUrlString);
+
         }   // if
 
     }   // onActivityResult
+
+    private void uploadVideoToServer(String videoUrlString) {
+
+        StrictMode.ThreadPolicy policy = new StrictMode.
+                ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
+        try {
+
+            SimpleFTP simpleFTP = new SimpleFTP();
+
+            simpleFTP.connect("ftp.swiftcodingthai.com",
+                    21, "mama@swiftcodingthai.com", "Abc12345");
+
+            simpleFTP.bin();
+
+            simpleFTP.cwd("Video");
+
+            simpleFTP.stor(new File(videoUrlString));
+
+            simpleFTP.disconnect();
+
+            Toast.makeText(this, "Upload Video OK", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.d("12AugV1", "e ==> " + e.toString());
+        }
+
+    }   // upload
 
     private String findPath(Uri uri) {
 
