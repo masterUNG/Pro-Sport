@@ -25,9 +25,9 @@ public class ServiceActivity extends AppCompatActivity {
 
         //Choose Video
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        intent.setType("video/*");
         startActivityForResult(Intent.createChooser(intent
-                , "Select Picture"), myINT);
+                , "Select Video"), myINT);
 
 
     }   // upload
